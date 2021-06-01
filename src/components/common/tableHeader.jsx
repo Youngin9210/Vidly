@@ -15,16 +15,25 @@ class TableHeader extends Component {
 		}
 		this.props.onSort(sortColumn);
 	};
+
+	renderSortIcon = (column) => {
+		const { sortColumn } = this.props;
+		if (column.path !== sortColumn.path) return null;
+		if (sortColumn.order === 'asc') return <i className="fa fa-sort-asc"></i>;
+		return <i className="fa fa-sort-desc"></i>;
+	};
+
 	render() {
 		return (
 			<thead>
 				<tr>
 					{this.props.columns.map((column) => (
 						<th
+							className="clickable"
 							key={column.path || column.key}
 							onClick={() => this.raiseSort(column.path)}
 						>
-							{column.label}
+							{column.label} {this.renderSortIcon(column)}
 						</th>
 					))}
 				</tr>
@@ -34,9 +43,3 @@ class TableHeader extends Component {
 }
 
 export default TableHeader;
-// <th onClick={() => this.raiseSort('title')}>Title</th>
-// 					<th onClick={() => this.raiseSort('genre.name')}>Genre</th>
-// 					<th onClick={() => this.raiseSort('numberInStock')}>Stock</th>
-// 					<th onClick={() => this.raiseSort('dailyRentalRate')}>Rate</th>
-// 					<th></th>
-// 					<th></th>
