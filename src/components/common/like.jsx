@@ -1,5 +1,4 @@
 import React from 'react';
-
 // input: liked: boolean
 // output: onClick
 
