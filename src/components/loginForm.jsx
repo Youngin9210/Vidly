@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Input from './common/input';
 
 class LoginForm extends Component {
 	state = {
@@ -15,6 +16,7 @@ class LoginForm extends Component {
 
 	handleChange = ({ currentTarget: input }) => {
 		const account = { ...this.state.account };
+		// selecting element with current name attribute and getting the value
 		account[input.name] = input.value;
 		this.setState({ account });
 	};
@@ -25,29 +27,20 @@ class LoginForm extends Component {
 			<div>
 				<h1>Login</h1>
 				<form onSubmit={this.handleSubmit}>
-					<div className="form-group">
-						<label htmlFor="username">Username</label>
-						<input
-							value={username}
-							onChange={this.handleChange}
-							autoFocus
-							name="username"
-							id="username"
-							type="text"
-							className="form-control"
-						/>
-					</div>
-					<div className="form-group">
-						<label htmlFor="password">Password</label>
-						<input
-							value={password}
-							onChange={this.handleChange}
-							name="password"
-							id="password"
-							type="password"
-							className="form-control"
-						/>
-					</div>
+					<Input
+						name="username"
+						value={username}
+						label="Username"
+						onChange={this.handleChange}
+						type="text"
+					/>
+					<Input
+						name="password"
+						value={password}
+						label="Password"
+						onChange={this.handleChange}
+						type="password"
+					/>
 					<button className="btn btn-primary">Login</button>
 				</form>
 			</div>
